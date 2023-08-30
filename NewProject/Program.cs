@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using NewProject.Data.Models;
+using NewProject.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 

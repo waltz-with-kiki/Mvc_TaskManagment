@@ -1,12 +1,7 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
 
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace NewProject.Data.Models
+namespace NewProject.Domain
 {
-
-
     public abstract class Entity
     {
         public int Id { get; set; }
@@ -29,12 +24,11 @@ namespace NewProject.Data.Models
         [Required]
         public string? Login { get; set; }
 
-        [Required]
         public string? Password { get; set; }
 
         public string? Email { get; set; }
 
-        public ICollection<Task>? Tasks { get; set; }
+        public ICollection<Exercise>? Exercises { get; set; }
 
         public ICollection<UserProject>? UserProjects { get; set; }
 
@@ -47,7 +41,7 @@ namespace NewProject.Data.Models
         Waiting
     }
 
-    public class Task : NamedEntity
+    public class Exercise : NamedEntity
     {
         public string? Header { get; set; }
 
@@ -74,7 +68,7 @@ namespace NewProject.Data.Models
 
         public ICollection<UserProject>? ProjectUsers { get; set; }
 
-        public ICollection<Task>? Tasks { get; set; }
+        public ICollection<Exercise>? Exercises { get; set; }
 
     }
 
@@ -85,26 +79,4 @@ namespace NewProject.Data.Models
         public Project? Project { get; set; }
 
     }
-
-    public class MonadaMech : DbContext
-    {
-
-       public DbSet<User> Users { get; set; }
-
-       public  DbSet<Project> Projects { get; set; }
-
-       public DbSet<Task> Tasks { get; set; }
-
-       public DbSet<UserProject> UserProject { get; set; }
-
-
-        public MonadaMech(DbContextOptions<MonadaMech> options) : base(options)
-        {
-
-        }
-
-    }
-
-
-
 }

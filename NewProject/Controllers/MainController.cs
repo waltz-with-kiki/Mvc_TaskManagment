@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewProject.Data.Models;
+using NewProject.DAL;
 
 namespace NewProject.Controllers
 {
     public class MainController : Controller
     {
-        private readonly MonadaMech _db;
+        public MonadaMech _db;
 
         public MainController(MonadaMech db)
         {

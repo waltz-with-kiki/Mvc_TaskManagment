@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NewProject.Data.Models;
+using NewProject.DAL;
 
 #nullable disable
 
-namespace NewProject.Migrations
+namespace NewProject.DAL.Migrations
 {
     [DbContext(typeof(MonadaMech))]
-    [Migration("20230828115218_NewMigration")]
-    partial class NewMigration
+    partial class MonadaMechModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,31 +22,7 @@ namespace NewProject.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NewProject.Data.Models.Project", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Presentation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("NewProject.Data.Models.Task", b =>
+            modelBuilder.Entity("NewProject.Domain.Exercise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +60,31 @@ namespace NewProject.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("NewProject.Data.Models.User", b =>
+            modelBuilder.Entity("NewProject.Domain.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Presentation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("NewProject.Domain.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +103,6 @@ namespace NewProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
@@ -117,7 +113,7 @@ namespace NewProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("NewProject.Data.Models.UserProject", b =>
+            modelBuilder.Entity("NewProject.Domain.UserProject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,23 +136,14 @@ namespace NewProject.Migrations
                     b.ToTable("UserProject");
                 });
 
-            modelBuilder.Entity("NewProject.Data.Models.Project", b =>
+            modelBuilder.Entity("NewProject.Domain.Exercise", b =>
                 {
-                    b.HasOne("NewProject.Data.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.Navigation("Author");
-                });
-
-            modelBuilder.Entity("NewProject.Data.Models.Task", b =>
-                {
-                    b.HasOne("NewProject.Data.Models.Project", "Project")
-                        .WithMany("Tasks")
+                    b.HasOne("NewProject.Domain.Project", "Project")
+                        .WithMany("Exercises")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("NewProject.Data.Models.User", "User")
-                        .WithMany("Tasks")
+                    b.HasOne("NewProject.Domain.User", "User")
+                        .WithMany("Exercises")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Project");
@@ -164,13 +151,22 @@ namespace NewProject.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewProject.Data.Models.UserProject", b =>
+            modelBuilder.Entity("NewProject.Domain.Project", b =>
                 {
-                    b.HasOne("NewProject.Data.Models.Project", "Project")
+                    b.HasOne("NewProject.Domain.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("NewProject.Domain.UserProject", b =>
+                {
+                    b.HasOne("NewProject.Domain.Project", "Project")
                         .WithMany("ProjectUsers")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("NewProject.Data.Models.User", "User")
+                    b.HasOne("NewProject.Domain.User", "User")
                         .WithMany("UserProjects")
                         .HasForeignKey("UserId");
 
@@ -179,16 +175,16 @@ namespace NewProject.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewProject.Data.Models.Project", b =>
+            modelBuilder.Entity("NewProject.Domain.Project", b =>
                 {
-                    b.Navigation("ProjectUsers");
+                    b.Navigation("Exercises");
 
-                    b.Navigation("Tasks");
+                    b.Navigation("ProjectUsers");
                 });
 
-            modelBuilder.Entity("NewProject.Data.Models.User", b =>
+            modelBuilder.Entity("NewProject.Domain.User", b =>
                 {
-                    b.Navigation("Tasks");
+                    b.Navigation("Exercises");
 
                     b.Navigation("UserProjects");
                 });
