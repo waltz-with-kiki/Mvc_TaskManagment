@@ -57,7 +57,7 @@ namespace NewProject.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("NewProject.Domain.Project", b =>

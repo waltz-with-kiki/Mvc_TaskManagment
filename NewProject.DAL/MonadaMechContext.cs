@@ -15,7 +15,7 @@ namespace NewProject.DAL
 
         public DbSet<Project> Projects { get; set; }
 
-        public DbSet<Exercise> Tasks { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
         public DbSet<UserProject> UserProject { get; set; }
 

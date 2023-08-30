@@ -12,7 +12,7 @@ using NewProject.DAL;
 namespace NewProject.DAL.Migrations
 {
     [DbContext(typeof(MonadaMech))]
-    [Migration("20230830025232_NewMigration")]
+    [Migration("20230830032107_NewMigration")]
     partial class NewMigration
     {
         /// <inheritdoc />
@@ -60,7 +60,7 @@ namespace NewProject.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("NewProject.Domain.Project", b =>

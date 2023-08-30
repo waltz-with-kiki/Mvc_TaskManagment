@@ -49,7 +49,7 @@ namespace NewProject.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Exercises",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -64,14 +64,14 @@ namespace NewProject.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_Exercises", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tasks_Projects_ProjectId",
+                        name: "FK_Exercises_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Tasks_Users_UserId",
+                        name: "FK_Exercises_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
@@ -102,19 +102,19 @@ namespace NewProject.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Projects_AuthorId",
-                table: "Projects",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tasks_ProjectId",
-                table: "Tasks",
+                name: "IX_Exercises_ProjectId",
+                table: "Exercises",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_UserId",
-                table: "Tasks",
+                name: "IX_Exercises_UserId",
+                table: "Exercises",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_AuthorId",
+                table: "Projects",
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserProject_ProjectId",
@@ -131,7 +131,7 @@ namespace NewProject.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Exercises");
 
             migrationBuilder.DropTable(
                 name: "UserProject");
