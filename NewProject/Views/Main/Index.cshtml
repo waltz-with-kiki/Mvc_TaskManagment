@@ -1,9 +1,119 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿<!doctype html>
+<html lang="en-US" prefix="og: https://ogp.me/ns#">
+    <head>
+  
+        <style media="print">
+            .article-actions-container,.document-toc-container,.language-menu,.main-menu-toggle,.mdn-cta-container,.on-github,.page-footer,.place,.sidebar,.top-banner,.top-navigation-main,ul.prev-next {
+                display: none!important
+            }
+
+            .main-page-content,.main-page-content pre {
+                padding: 2px
+            }
+
+            .main-page-content pre {
+                border-left-width: 2px
+            }
+        </style>
+
+        <style>
+    html,
+    body{
+        height: 100%;
+        font-size: 15px;
+    }
+    .swiper {
+  width: 1000px;
+  height: 100%;
 }
+.swiper-slide{
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper-slide img{
+    width: 50%;
+    object-fit: cover;
+}
+</style>
 
-<h1>Index Page</h1>
+        <link href="/css/site.css" rel="stylesheet">
+        <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-<button >По приколу</button>
+    </head>
+    <body>
+        <div id="root">
+            <ul id="nav-access" class="a11y-nav">
+                <li>
+                    <a id="skip-main" href="#content">Skip to main content</a>
+                </li>
+                <li>
+                    <a id="skip-search" href="#top-nav-search-input">Skip to search</a>
+                </li>
+                <li>
+                    <a id="skip-select-language" href="#languages-switcher-button">Skip to select language</a>
+                </li>
+            </ul>
+            <div class="page-wrapper  category-learn document-page">
+                <div class="top-banner loading">
+                    <section class="place top container"></section>
+                </div>
+
+                </div>
+
+                </div>
+
+                <div class="swiper">
+    
+    <div class="swiper-wrapper">
+    
+      <div class="swiper-slide"><img src="https://i.pinimg.com/564x/d5/f7/57/d5f7578843f4c3758de86c2857d74d06.jpg"></div>
+      <div class="swiper-slide"><img src="https://i.pinimg.com/564x/36/32/37/363237632f3e0a832dec8dcdaac46dff.jpg"></div>
+      <div class="swiper-slide"><img src="https://i.pinimg.com/564x/d9/38/5c/d9385ca906c51b03c7884c654a4a514f.jpg"></div>
+      ...
+    </div>
+   
+    <div class="swiper-pagination"></div>
+  
+    
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+
+  </div>
+
+
+
+                <script>
+                    const swiper = new Swiper('.swiper', {
+                     // Optional parameters
+                     direction: 'horizontal',
+                         loop: true,
+  
+
+                                // If we need pagination
+                        pagination: {
+                             el: '.swiper-pagination',
+                                },
+                                    // Navigation arrows
+                             navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                                },
+
+
+                            
+                    });
+
+
+                </script>
+
+
+    </body>
+</html>

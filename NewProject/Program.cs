@@ -13,8 +13,8 @@ builder.Services.AddDbContext<MonadaMech>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MonadaMech")));
 
 builder.Services.AddTransient<IRepository<User>, DbRepository<User>>();
-builder.Services.AddTransient<IRepository<Project>, ProjectDbRepository>();
 builder.Services.AddTransient<IRepository<Exercise>, DbRepository<Exercise>>();
+builder.Services.AddTransient<IRepository<Project>, ProjectDbRepository>();
 builder.Services.AddTransient<IRepository<UserProject>, DbRepository<UserProject>>();
 
 

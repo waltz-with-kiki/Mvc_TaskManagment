@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ObservableCollection<Project>
+
+
+
+@{
+    ViewBag.Title = "title";
+
+}
+
+@{
+    foreach(var item in Model)
+    {
+
+        <p>Проект id: @item.Id</p>
+        <p>Название: @item.Name</p>
+        <p>Задачи:</p>
+        foreach(var task in item.Exercises)
+        {
+            <p>@task.Header</p>
+            <p>@task.Name</p>
+            <br />
+        }
+        <br />
+    }
+
+}
