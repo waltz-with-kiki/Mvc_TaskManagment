@@ -53,6 +53,15 @@ namespace NewProject.Controllers
 
         public IActionResult UserProjects()
         {
+            //UsersRep.Add(new User { Name = "ai_land", Email = "Sqwidwq@gmail.com", Login = "ai_land", Password = "1234", Surname = "don`t know" });
+
+
+
+           // ProjectsRep.Add(new Project { Name = "My second project", });
+
+           // ExercisesRep.Add(new Exercise { Name = "First exercise", Header = "My first exercise", Project = ProjectsRep.Items.Where(x => x.Name == "My second project").FirstOrDefault() });
+            
+           // ExercisesRep.Add(new Exercise { Name = "Second exercise", Header = "My Second exercise", Project = ProjectsRep.Items.Where(x => x.Name == "My second project").FirstOrDefault() });
 
             Projects = new ObservableCollection<Project>(ProjectsRep.Items.ToArray());
 
@@ -61,7 +70,7 @@ namespace NewProject.Controllers
             return View(Projects);
         }
 
-        // _db.Exercises.Add(new Domain.Exercise { Name = "New Exerice" });
+         //_db.Exercises.Add(new Domain.Exercise { Name = "New Exerice" });
         // _db.SaveChanges();   
 
 

@@ -1,4 +1,5 @@
-﻿@*
+﻿<html>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -12,20 +13,59 @@
 
 }
 
-@{
-    foreach(var item in Model)
+    <head>
+        <style>
+            .project {
+            background-color: #eee
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer; 
+            }
+
+            .task {
+                border: 0.1px solid #eee;
+                border-radius: 20px;
+                padding: 5px;
+                margin-left: 20px;
+                display: none; 
+             }
+        </style>
+
+        <script>
+            function toggleTasks(element) {
+            var tasks = element.nextElementSibling; 
+
+            var taskItems = tasks.querySelectorAll('.task'); 
+
+                for (var i = 0; i < taskItems.length; i++) {
+                    taskItems[i].style.display = taskItems[i].style.display === "none" ? "block" : "none"; 
+
+                }
+            }
+            
+
+        </script>
+    </head>
+
+    <body>
+        @foreach(var item in Model)
     {
-
-        <p>Проект id: @item.Id</p>
-        <p>Название: @item.Name</p>
-        <p>Задачи:</p>
-        foreach(var task in item.Exercises)
-        {
-            <p>@task.Header</p>
-            <p>@task.Name</p>
-            <br />
-        }
-        <br />
+        <div class="project">
+            <p onclick="toggleTasks(this)">@item.Name</p>
+       
+            <div class="tasks">
+                @foreach(var task in item.Exercises)
+                {
+                    <div class="task">
+                        <p>@task.Header</p>
+                        <p>@task.Name</p>
+                    </div>
+                    <br />
+                 }
+            </div>
+        </div>
     }
-
-}
+    </body>
+</html>
